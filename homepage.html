@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>모달 창 예시</title>
+  <style>
+    /* 기본 스타일 */
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* 모달창 스타일 */
+    .modal {
+      display: none; /* 처음에는 모달창을 숨김 */
+      position: fixed; /* 화면에 고정 */
+      z-index: 1; /* 다른 요소 위에 겹쳐 표시 */
+      left: 0;
+      top: 0;
+      width: 100%; /* 화면 전체 너비 */
+      height: 100%; /* 화면 전체 높이 */
+      overflow: auto; /* 스크롤바 자동 생성 */
+      background-color: rgba(0, 0, 0, 0.4); /* 배경색 (투명도 포함) */
+    }
+
+    .modal-content {
+      background-color: #fefefe;
+      margin: 15% auto; /* 상단, 좌우 여백 자동 설정 */
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%; /* 콘텐츠 영역 너비 */
+    }
+
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    #homeBody {
+	      text-align: center;
+
+    }
+    .aTag {
+	text-align: right;
+    }
+    .hs {
+    margin-top: 100px;
+    }
+    .button {
+
+  margin-top: 30px;
+  display: inline-block;
+  padding: 15px 25px;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #04AA6D;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+.button:hover {background-color: #3e8e41}
+
+.button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+  </style>
+</head>
+<body>
+	<div id="homeBody">
+  <h1 class="hs">오픈 채팅 서비스 입니다</h1>
+  <button id="openModalBtn" class = "button">채팅으로 이동</button>
+
+	</div>
+
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <p> 오픈 채팅방에서 사용할 닉네임을 정해주세요 </p>
+      <form action="/examples/media/action_target.php" method="get">
+		닉네임 : <input type="text" id="nickName" name="st_name"><br>
+	</form>
+     
+      <a href = "https://z.msporthome.store/chat" class = "aTag"   > 완료 </a>
+    </div>
+  </div>
+
+  <script>
+
+	  // 스토리지 테스트 코드
+let nickName2 = "zz"
+     window.localStorage.setItem('nickName2', nickName2);	
+  </script>
+
+
+  <script>
+    // Get the modal and close button elements
+    var modal = document.getElementById("myModal");
+    var btn = document.getElementById("openModalBtn");
+    var span = document.getElementsByClassName("close")[0];
+    var closeBtn = document.getElementById("closeModalBtn");
+
+    // Open the modal when the button is clicked
+    btn.onclick = function() {
+      modal.style.display = "block";
+    }
+
+    // Close the modal when the close button is clicked
+    span.onclick = function() {
+      modal.style.display = "none";
+    }
+
+    // Close the modal when the close button (inside the modal) is clicked
+    closeBtn.onclick = function() {
+      modal.style.display = "none";
+    }
+
+    // Close the modal when the user clicks anywhere outside of the modal
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+
+  </script>
+
+
+
+  
+  <script>
+
+	   // 보낼 데이터
+const aTag = document.querySelector('a');
+
+aTag.addEventListener('click', () => {
+
+  const element = document.getElementById('nickName');
+
+  let nickName = element.value;	
+		  
+  location.href = `receive.html?${nickName}`;
+  localStorage.setItem('nickName', nickName);
+
+});
+  </script>
+
+
+
+</body>
+</html>
